@@ -40,26 +40,41 @@ pub fn run(contents: &str) -> u32 {
 }
 
 #[cfg(test)]
-mod tests {
+mod unit_tests {
     use super::*;
 
-    // Unit Tests
+    // parse_num tests
     #[test]
     fn test_parse_num() {
         assert_eq!(parse_num("32"), Some(32));
     }
+    #[test]
+    fn test_parse_single_num() {
+        assert_eq!(parse_num("3"), Some(3));
+    }
+    #[test]
+    fn test_pare_num_no_nums() {
+        assert_eq!(parse_num("a"), None);
+    }
 
+    // parse_line tests
     #[test]
     fn test_parse_line() {
         assert_eq!(parse_line("a2defghi3"), Some(23));
     }
-
     #[test]
     fn test_parse_line_single_number() {
         assert_eq!(parse_line("a5x"), Some(55));
     }
+    #[test]
+    fn test_parse_line_no_numbers() {
+        assert_eq!(parse_line("abcdef"), None);
+    }
+}
 
-    // E2E Tests
+#[cfg(test)]
+mod e2e_tests {
+    use super::*;
     #[test]
     fn provided_test_case() {
         let contents = "1abc2\npqr3stu8vwx\na1b2c3d4e5f\ntreb7uchet";
