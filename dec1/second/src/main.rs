@@ -1,4 +1,4 @@
-use first::run;
+use second::run;
 use std::fs;
 
 fn main() {
